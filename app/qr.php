@@ -1,6 +1,6 @@
 <?php
 include("../data-base.php");
-$database = new Database("user-app");
+$database = new Database('user-app');
 $id_vehicle = $_GET['v'];
 $state = $_GET['s'];
 $username = $_GET['u'];
@@ -11,7 +11,7 @@ $response = mysqli_query($connection, "select id_vehicle from vehicle
 $row = $response->fetch_array(MYSQLI_NUM);
 
 
-if ($state == "active") {
+if ($state == 'active') {
     if ($row != null) {
         if ($row[0] != $id_vehicle) {
             echo json_encode(1);
@@ -33,11 +33,10 @@ if ($state == "active") {
                                                     AND vu.vehicle_id_vehicle = '$id_vehicle'");
             $row = $response->fetch_array(MYSQLI_NUM);
             echo json_encode($row[0]);
-            return;
         } else {
             echo json_encode(false);
-            return;
         }
+        return;
     } else {
         isRead($connection, $id_vehicle, $state);
     }
