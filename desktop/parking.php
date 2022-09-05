@@ -45,7 +45,15 @@ function active($connection, $username, $id_vehicle, $id_location, $input_hour)
 }
 
 function inactive($connection, $id_vehicle, $username)
+
 {
+    $response = mysqli_query($connection, "SELECT v.state_vehicle FROM easypark.vehicle v
+                                                    WHERE v.id_vehicle = '$id_vehicle'");
+    $row = $response->fetch_array(MYSQLI_NUM);
+    if ($row[0] != 'active') {
+        echo 'inactive';
+        return;
+    }
     $response = mysqli_query($connection, "SELECT v.username FROM easypark.vehicle v
                                                     WHERE v.id_vehicle = '$id_vehicle'");
     $row = $response->fetch_array(MYSQLI_NUM);
