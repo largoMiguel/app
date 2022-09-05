@@ -58,7 +58,7 @@ function inactive($connection, $id_vehicle, $username)
                                                     WHERE v.id_vehicle = '$id_vehicle'");
     $row = $response->fetch_array(MYSQLI_NUM);
     if ($row[0] != $username) {
-        echo 'invalid username';
+        echo 'invalid';
         return;
     }
     mysqli_query($connection, "UPDATE easypark.vehicle v, easypark.vehicle_has_users vu
