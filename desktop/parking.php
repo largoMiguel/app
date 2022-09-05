@@ -51,7 +51,11 @@ function inactive($connection, $id_vehicle, $username)
                                                     WHERE v.id_vehicle = '$id_vehicle'");
     $row = $response->fetch_array(MYSQLI_NUM);
     if ($row[0] != 'active') {
+<<<<<<< HEAD
         echo 'inactive';
+=======
+        echo 'vehicle inactive';
+>>>>>>> 0ed2e8f2158763a655d7c425b808dc7b5874dd64
         return;
     }
     $response = mysqli_query($connection, "SELECT v.username FROM easypark.vehicle v
