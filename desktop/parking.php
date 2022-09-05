@@ -64,12 +64,12 @@ function inactive($connection, $id_vehicle, $username)
     mysqli_query($connection, "UPDATE easypark.vehicle v, easypark.vehicle_has_users vu
                                                     SET vu.input_hour = '00:00'
                                                     WHERE vu.vehicle_id_vehicle = '$id_vehicle'
-                                                    AND vu.users_username = '0';");
+                                                    AND vu.users_username = '$username';");
 
     mysqli_query($connection, "UPDATE easypark.vehicle v
                                                     SET v.ubicacion_idUbicacion = '0',
                                                         v.state_vehicle        = 'inactive',
-                                                        v.username = '$username'
+                                                        v.username = '0'
                                                     WHERE v.id_vehicle = '$id_vehicle'");
     $connection->close();
     echo true;
