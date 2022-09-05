@@ -41,7 +41,7 @@ function active($connection, $username, $id_vehicle, $id_location, $input_hour)
                                                         v.username = '$username'
                                                     WHERE v.id_vehicle = '$id_vehicle'");
     $connection->close();
-    echo true;
+    echo 'active';
 }
 
 function inactive($connection, $id_vehicle, $username)
