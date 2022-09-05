@@ -7,12 +7,12 @@ $username = $_POST['username'];
 $id_vehicle = $_POST['id_vehicle'];
 
 switch ($_SERVER['REQUEST_URI']) {
-    case '/server/desktop/parking.php/active':
+    case '/desktop/parking.php/active':
         $id_location = $_POST['id_location'];
         $input_hour = $_POST['input_hour'];
         active($connection, $username, $id_vehicle, $id_location, $input_hour);
         break;
-    case '/server/desktop/parking.php/inactive':
+    case '/desktop/parking.php/inactive':
         inactive($connection, $id_vehicle, $username);
         break;
     default:
