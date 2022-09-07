@@ -3,19 +3,14 @@ include("../data-base.php");
 $database = new Database('user-app');
 $connection = $database->getConnection();
 
-echo $_SERVER['REQUEST_URI'];
-
 switch ($_SERVER['REQUEST_URI']) {
-    case '/sensor/sensor.php':
-        $name = $_GET['name'];
-        $state = $_GET['state'];
-        updateSensor($connection, $name, $state);
-        break;
     case '/sensor/sensor.php/getSensors':
         getSensors($connection);
         break;
     default:
-        echo 'error route';
+        $name = $_GET['name'];
+        $state = $_GET['state'];
+        updateSensor($connection, $name, $state);
 }
 
 
@@ -25,6 +20,7 @@ function updateSensor($connection, $name, $state)
     mysqli_query($connection, "UPDATE easypark.ubicacion u
                                     SET u.estadoUbicacion = '$state'
                                     WHERE u.idUbicacion = '$name';");
+    $connection->close();
 }
 
 function getSensors($connection)
@@ -36,6 +32,7 @@ function getSensors($connection)
     while ($r = $response->fetch_array(MYSQLI_NUM)) {
         $rows[] = $r;
     }
+    $connection->close();
     echo json_encode($rows);
 }
 
