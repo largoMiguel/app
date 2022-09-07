@@ -30,8 +30,11 @@ function getSensors($connection)
     $response = mysqli_query($connection, "SELECT u.idUbicacion
                                     FROM easypark.ubicacion u
                                     WHERE u.estadoUbicacion = '1';");
-    $row = $response->fetch_array(MYSQLI_NUM);
-    echo json_decode($row);
+    $rows = array();
+    while ($r = $response->fetch_array(MYSQLI_NUM)) {
+        $rows[] = $r;
+    }
+    echo json_encode($rows);
 }
 
 
