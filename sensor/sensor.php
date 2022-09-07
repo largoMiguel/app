@@ -3,6 +3,8 @@ include("../data-base.php");
 $database = new Database('user-app');
 $connection = $database->getConnection();
 
+echo $_SERVER['REQUEST_URI'];
+
 switch ($_SERVER['REQUEST_URI']) {
     case '/sensor/sensor.php':
         $name = $_GET['name'];
