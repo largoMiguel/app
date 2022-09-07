@@ -4,12 +4,12 @@ $database = new Database('user-app');
 $connection = $database->getConnection();
 
 switch ($_SERVER['REQUEST_URI']) {
-    case '/desktop/sensor.php':
+    case '/sensor/sensor.php':
         $name = $_GET['name'];
         $state = $_GET['state'];
         updateSensor($connection, $name, $state);
         break;
-    case '/desktop/sensor.php/getSensors':
+    case '/sensor/sensor.php/getSensors':
         getSensors($connection);
         break;
     default:
