@@ -33,8 +33,10 @@ function active($connection, $username, $id_vehicle)
                                                 and vu.users_username = '$username';");
             $row = $response->fetch_array(MYSQLI_NUM);
             $p = getParking($connection, $id_vehicle);
-            $array = array($row[0], $p);
-            echo json_encode($array);
+            $rows = array();
+            $rows[] = $row;
+            $rows[] = $p;
+            echo json_encode($rows);
             die();
         }
         $connection->close();

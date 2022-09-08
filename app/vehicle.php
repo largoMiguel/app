@@ -52,14 +52,12 @@ class VehicleDatabase
                 $response = mysqli_query($connection, "INSERT INTO vehicle_has_users (vehicle_id_vehicle, users_username, state_vehicle, input_hour) VALUES ('$id_vehicle', '$username', 'inactive', '00:00'); ");
                 #$response = mysqli_query($connection, "INSERT INTO vehicle_has_users (vehicle_id_vehicle, users_username) VALUES ('$id_vehicle', '$username'); ");
             }
-            $connection->close();
-            return $response;
         } else {
             mysqli_query($connection, "INSERT INTO vehicle (id_vehicle, type_vehicle, ubicacion_idUbicacion) VALUES ('$id_vehicle', '$type_vehicle', '0')");
             $response = mysqli_query($connection, "INSERT INTO vehicle_has_users (vehicle_id_vehicle, users_username, state_vehicle, input_hour) VALUES ('$id_vehicle', '$username', 'inactive', '00:00'); ");
-            $connection->close();
-            return $response;
         }
+        $connection->close();
+        return $response;
 
     }
 }
