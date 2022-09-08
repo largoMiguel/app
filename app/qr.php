@@ -36,7 +36,7 @@ function active($connection, $username, $id_vehicle)
             $rows = array();
             $rows[] = $row;
             $rows[] = $p;
-            echo json_encode($rows);
+            echo 
             die();
         }
         $connection->close();
