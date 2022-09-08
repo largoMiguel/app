@@ -40,6 +40,10 @@ function active($connection, $username, $id_vehicle, $id_location, $input_hour)
                                                         v.state_vehicle        = 'active',
                                                         v.username = '$username'
                                                     WHERE v.id_vehicle = '$id_vehicle'");
+
+    mysqli_query($connection, "UPDATE easypark.ubicacion u
+                                                    SET u.state = 'inactive'
+                                                    WHERE u.idUbicacion = '$id_location'");
     $connection->close();
     echo true;
 }
@@ -71,6 +75,8 @@ function inactive($connection, $id_vehicle, $username)
                                                         v.state_vehicle        = 'inactive',
                                                         v.username = '0'
                                                     WHERE v.id_vehicle = '$id_vehicle'");
+
+
     $connection->close();
     echo true;
 }
