@@ -40,7 +40,8 @@ function active($connection, $username, $id_vehicle)
         }
     }
     isRead($connection, $id_vehicle, 'active');
-    echo 'active';
+    $p = getParking($connection, $id_vehicle);
+    echo 'active:' + p;
 }
 
 function inactive($connection, $id_vehicle)
@@ -56,4 +57,12 @@ function isRead($connection, $id_vehicle, $state)
         $row = $response->fetch_array(MYSQLI_NUM);
     } while ($row[0] != $state);
     $connection->close();
+}
+
+function getParking($connection, $id_vehicle)
+{
+    $response = mysqli_query($connection, "select v.ubicacion_idUbicacion from vehicle v
+                                                where v.id_vehicle = '$id_vehicle';");
+    $row = $response->fetch_array(MYSQLI_NUM);
+    return $row[0];
 }
