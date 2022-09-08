@@ -41,7 +41,7 @@ function active($connection, $username, $id_vehicle)
     }
     isRead($connection, $id_vehicle, 'active');
     $p = getParking($connection, $id_vehicle);
-    echo "active:$p";
+    echo "active-$p";
 }
 
 function inactive($connection, $id_vehicle)
