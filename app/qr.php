@@ -35,6 +35,7 @@ function active($connection, $username, $id_vehicle)
             $p = getParking($connection, $id_vehicle);
             $array = array($row[0], $p);
             echo json_encode($array);
+            die();
         }
         $connection->close();
         return;
