@@ -34,7 +34,7 @@ function active($connection, $username, $id_vehicle)
             $row = $response->fetch_array(MYSQLI_NUM);
 
             $p = getParking($connection, $id_vehicle);
-            echo json_encode($row[0], $p);
+            echo json_encode("$row[0], $p");
         }
         $connection->close();
         return;
