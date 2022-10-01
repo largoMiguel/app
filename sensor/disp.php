@@ -8,4 +8,5 @@ $response = mysqli_query($connection, "SELECT COUNT(u.state)
                                             WHERE u.state = 'active';");
 $row = $response->fetch_array(MYSQLI_NUM);
 $connection->close();
+
 echo json_encode($row);
