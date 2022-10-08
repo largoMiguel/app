@@ -28,7 +28,7 @@ function active($connection, $username, $id_vehicle)
         if ($row[1] != $username) {
             echo 'invalid';
         } else {
-            $response = mysqli_query($connection, "select vu.input_hour from vehicle_has_users vu
+            $response = mysqli_query($connection, "select vu.input_hour from hour_input vu
                                                 where vu.vehicle_id_vehicle = '$id_vehicle'
                                                 and vu.users_username = '$username';");
             $row = $response->fetch_array(MYSQLI_NUM);

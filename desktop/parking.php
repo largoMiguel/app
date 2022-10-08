@@ -30,7 +30,7 @@ function active($connection, $username, $id_vehicle, $id_location, $input_hour)
         echo 'active';
         return;
     }
-    mysqli_query($connection, "UPDATE easypark.vehicle v, easypark.vehicle_has_users vu
+    mysqli_query($connection, "UPDATE easypark.vehicle v, easypark.hour_input vu
                                                     SET vu.input_hour = '$input_hour'
                                                     WHERE vu.vehicle_id_vehicle = '$id_vehicle'
                                                     AND vu.users_username = '$username';");
@@ -65,7 +65,7 @@ function inactive($connection, $id_vehicle, $username)
         echo 'invalid';
         return;
     }
-    mysqli_query($connection, "UPDATE easypark.vehicle v, easypark.vehicle_has_users vu
+    mysqli_query($connection, "UPDATE easypark.vehicle v, easypark.hour_input vu
                                                     SET vu.input_hour = '00:00'
                                                     WHERE vu.vehicle_id_vehicle = '$id_vehicle'
                                                     AND vu.users_username = '$username';");

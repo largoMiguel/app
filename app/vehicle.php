@@ -22,7 +22,7 @@ class VehicleDatabase
     {
         $database = new Database("user-app");
         $connection = $database->getConnection();
-        $response = mysqli_query($connection, "SELECT id_vehicle FROM vehicle, vehicle_has_users WHERE id_vehicle = vehicle_id_vehicle AND users_username = '$username'");
+        $response = mysqli_query($connection, "SELECT id_vehicle FROM vehicle, hour_input WHERE id_vehicle = vehicle_id_vehicle AND users_username = '$username'");
         $rows = array();
         while ($r = $response->fetch_array(MYSQLI_NUM)) {
             $rows[] = $r;
@@ -41,7 +41,7 @@ class VehicleDatabase
             $rows[] = $r;
         }
         if ($rows) {
-            $response = mysqli_query($connection, "SELECT users_username FROM vehicle_has_users WHERE users_username = '$username' AND vehicle_id_vehicle = '$id_vehicle'");
+            $response = mysqli_query($connection, "SELECT users_username FROM hour_input WHERE users_username = '$username' AND vehicle_id_vehicle = '$id_vehicle'");
             $rows = array();
             while ($r = $response->fetch_array(MYSQLI_NUM)) {
                 $rows[] = $r;
@@ -49,12 +49,12 @@ class VehicleDatabase
             if ($rows) {
                 return true;
             } else {
-                $response = mysqli_query($connection, "INSERT INTO vehicle_has_users (vehicle_id_vehicle, users_username, state_vehicle, input_hour) VALUES ('$id_vehicle', '$username', 'inactive', '00:00'); ");
+                $response = mysqli_query($connection, "INSERT INTO hour_input (vehicle_id_vehicle, users_username, state_vehicle, input_hour) VALUES ('$id_vehicle', '$username', 'inactive', '00:00'); ");
                 #$response = mysqli_query($connection, "INSERT INTO vehicle_has_users (vehicle_id_vehicle, users_username) VALUES ('$id_vehicle', '$username'); ");
             }
         } else {
             mysqli_query($connection, "INSERT INTO vehicle (id_vehicle, type_vehicle, ubicacion_idUbicacion) VALUES ('$id_vehicle', '$type_vehicle', '0')");
-            $response = mysqli_query($connection, "INSERT INTO vehicle_has_users (vehicle_id_vehicle, users_username, state_vehicle, input_hour) VALUES ('$id_vehicle', '$username', 'inactive', '00:00'); ");
+            $response = mysqli_query($connection, "INSERT INTO hour_input (vehicle_id_vehicle, users_username, state_vehicle, input_hour) VALUES ('$id_vehicle', '$username', 'inactive', '00:00'); ");
         }
         $connection->close();
         return $response;
