@@ -11,11 +11,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $id_vehicle = $_POST['id_vehicle'];
         $username = $_POST['username'];
         $type_vehicle = $_POST['type_vehicle'];
-        if ($type_vehicle == $value) {
-            echo json_encode($user->delete($id_vehicle, $username));
-        } else {
+  
             echo json_encode($user->insert($id_vehicle, $username, $type_vehicle));
-        }
+
         break;
 }
 
