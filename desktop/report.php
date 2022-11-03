@@ -22,9 +22,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $date = $_POST['date'];
         $hour = $_POST['hour'];
         $state = $_POST['state'];
-        $database = new Database("user-app");
+        $database = new Database("user-desktop");
         $connection = $database->getConnection();
-        $response = mysqli_query($connection, "INSERT INTO reports (id_vehicle, username, date, hour, state) VALUES ('$id_vehicle', '$username', '$date', '$hour', $state); ");
+        mysqli_query($connection, "INSERT INTO reports (date, hour, id_vehicle, username, state) VALUES ('$date', '$hour', '$id_vehicle', '$username', '$state');");
         $connection->close();
         echo json_encode(true);
         break;
