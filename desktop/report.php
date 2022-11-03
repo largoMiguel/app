@@ -17,8 +17,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 
     case 'POST':
-        $id_vehicle = $_POST['username'];
-        $username = $_POST['id_vehicle'];
+        $username = $_POST['username'];
+        $id_vehicle = $_POST['id_vehicle'];
         $date = $_POST['date'];
         $hour = $_POST['hour'];
         $state = $_POST['state'];
