@@ -10,7 +10,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $id_vehicle = $_POST['id_vehicle'];
         $username = $_POST['username'];
         $type_vehicle = $_POST['type_vehicle'];
-        if ($type_vehicle = '') {
+        if ($type_vehicle = "delete") {
             echo json_encode($user->delete($id_vehicle, $username));
             return;
         }
@@ -66,7 +66,7 @@ class VehicleDatabase
     {
         $database = new Database("user-app");
         $connection = $database->getConnection();
-        mysqli_query($connection, "DELETE FROM easypark.hour_input WHERE vehicle_id_vehicle LIKE '$id_vehicle' ESCAPE '#' AND users_username = '$username';");
+        mysqli_query($connection, "DELETE FROM easypark.hour_input WHERE vehicle_id_vehicle = '$id_vehicle' AND users_username = '$username';");
         $connection->close();
         return "true";
     }
