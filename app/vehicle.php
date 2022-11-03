@@ -10,9 +10,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $id_vehicle = $_POST['id_vehicle'];
         $username = $_POST['username'];
         $type_vehicle = $_POST['type_vehicle'];
+        if ($type_vehicle = '') {
+            echo json_encode($user->delete($id_vehicle, $username));
+            return;
+        }
         echo json_encode($user->insert($id_vehicle, $username, $type_vehicle));
-        break;
-    case 'PUT':
         break;
 }
 
@@ -58,6 +60,14 @@ class VehicleDatabase
         }
         $connection->close();
         return $response;
+    }
 
+    public function delete($id_vehicle, $username)
+    {
+        $database = new Database("user-app");
+        $connection = $database->getConnection();
+        mysqli_query($connection, "DELETE FROM easypark.hour_input WHERE vehicle_id_vehicle LIKE '$id_vehicle' ESCAPE '#' AND users_username = '$username';");
+        $connection->close();
+        return "true";
     }
 }
