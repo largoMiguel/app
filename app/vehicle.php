@@ -68,6 +68,6 @@ class VehicleDatabase
         $connection = $database->getConnection();
         mysqli_query($connection, "DELETE FROM hour_input WHERE vehicle_id_vehicle = '$id_vehicle' AND users_username = '$username';");
         $connection->close();
-        return "true";
+        return "trues";
     }
 }
